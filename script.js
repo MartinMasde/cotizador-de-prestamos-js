@@ -55,12 +55,8 @@ class Solicitante {
 const registrarSolicitante = (e) => {
   e.preventDefault();
   let verificacion = document.querySelector(".registro").value;
-  // let verificacion = document.getElementById("verificacion").value;
   const resultadoContainer = document.getElementById("resultado");
-  // verificacion.addEventListener("change",  (event) => {
-  //   verificacion = event.target.value;
-  
-  
+  // Verificacion de que los valores ingresados sean válidos  
   if (verificacion === "si" 
       && document.getElementById("nombre").value !== "" 
       && document.getElementById("apellido").value !== "" 
