@@ -9,6 +9,7 @@ body {
   }
   
   .container {
+    height: 100vh;
     width: 300px;
     padding: 20px;
     background-color: #f9f9f9;
@@ -62,4 +63,9 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 1.1);
     border: 10px;
     text-align: center;
+  }
+
+  .resultadoStorage {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1.1);
+    border: 10px;
   }

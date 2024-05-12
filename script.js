@@ -50,12 +50,15 @@ class Solicitante {
   }
 }
 
+// Incializa la lista de solicitantes con los datos guardados en el local storage o una lista vacia
+let listaSolicitantes = JSON.parse(localStorage.getItem("solicitantes")) || [];
 
 // Funcion para registrar solicitantes de prestamos
 const registrarSolicitante = (e) => {
   e.preventDefault();
   let verificacion = document.querySelector(".registro").value;
   const resultadoContainer = document.getElementById("resultado2");
+
   // Verificacion de que los valores ingresados sean válidos  
   if (verificacion === "si" 
       && document.getElementById("nombre").value !== "" 
@@ -66,7 +69,12 @@ const registrarSolicitante = (e) => {
     let apellido = document.getElementById("apellido").value;
     let documento = document.getElementById("documento").value;
     let edad = document.getElementById("edad").value;
-    listaSolicitantes.push(new Solicitante(nombre, apellido, documento, edad)); // Agregar un nuevo solicitante a la lista
+    // Agregar un nuevo solicitante a la lista  
+    listaSolicitantes.push(new Solicitante(nombre, apellido, documento, edad)); 
+
+    // Guardar la lista de solicitantes en el local storage
+    localStorage.setItem("solicitantes", JSON.stringify(listaSolicitantes));
+
     for (let solicitante of listaSolicitantes) { // Recorrer la lista de solicitantes y mostrar sus datos por consola
       console.log("Nombre: " + solicitante.nombre);
       console.log("Apellido: " + solicitante.apellido);
@@ -92,6 +100,36 @@ const registrarSolicitante = (e) => {
 // Event Listener para el botón de registrar solicitante
 document.getElementById("registrar").addEventListener("click", registrarSolicitante); 
 
-let listaSolicitantes = [];
+// Event Listener para el boton de Listar solicitantes
+document.getElementById("listar").addEventListener("click", () => {
+  // Obtener la lista de solicitantes guardada en el local storage
+  const solicitantesGuardados = localStorage.getItem("solicitantes");
+
+  // Verificar si hay solicitantes guardados
+  if (solicitantesGuardados) {
+    const listaSolicitantes = JSON.parse(solicitantesGuardados);
+    const listaSolicitantesDiv = document.getElementById("listaSolicitantes");
+    //  Limpiar la lista de solicitantes antes de mostrarla
+    listaSolicitantesDiv.innerHTML = ""; 
+
+    //  Crear una lista para mostrar los solicitantes
+    const ul = document.createElement("ul");
+
+    // Crear un li por cada solicitante y agregarlo a la lista
+    listaSolicitantes.forEach((solicitante) => {
+      const li = document.createElement("li");
+      li.textContent = `Nombre: ${solicitante.nombre}, Apellido: ${solicitante.apellido}, Documento: ${solicitante.documento}, Edad: ${solicitante.edad}`;
+      ul.appendChild(li);
+    });
+
+    // Mostrar la lista de solicitantes en el HTML
+    listaSolicitantesDiv.appendChild(ul);
+
+    } else {
+      alert("No hay solicitantes registrados");
+    }
+  });
+
+
 
 
