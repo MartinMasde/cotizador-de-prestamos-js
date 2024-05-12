@@ -55,7 +55,7 @@ class Solicitante {
 const registrarSolicitante = (e) => {
   e.preventDefault();
   let verificacion = document.querySelector(".registro").value;
-  const resultadoContainer = document.getElementById("resultado");
+  const resultadoContainer = document.getElementById("resultado2");
   // Verificacion de que los valores ingresados sean válidos  
   if (verificacion === "si" 
       && document.getElementById("nombre").value !== "" 
