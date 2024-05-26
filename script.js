@@ -6,12 +6,20 @@ const calcularPrestamo = () => {
   const resultadoContainer = document.getElementById("resultado");
   // Verificacion de que los valores ingresados sean válidos
   if (isNaN(monto) || monto <= 0) {
-    resultadoContainer.textContent = "Debe ingresar un monto válido";
+    // Mostrar aviso de error usando SweetAlert2
+    resultadoContainer.textContent = Swal.fire({
+      title: "Debe ingresar un monto válido",
+      icon: "error"
+    });
     return;
   }
   // Verificacion de que los valores ingresados sean válidos
   if (isNaN(cuotas) || cuotas <= 0) {
-    resultadoContainer.textContent = "Debe ingresar una cantidad de cuotas válida";
+    // Mostrar aviso de error usando SweetAlert2
+    resultadoContainer.textContent = Swal.fire({
+      title: "Debe ingresar una cantidad de cuotas válida",
+      icon: "error"
+    });
     return;
   }
 
@@ -28,12 +36,21 @@ const calcularPrestamo = () => {
       recargo = 0.045;
       break;
     default:
-      resultadoContainer.textContent = "No se permiten más de 36 cuotas, ingrese nuevamente";
+      // Mostrar aviso de error usando SweetAlert2
+      resultadoContainer.textContent = Swal.fire({
+        title: "No se permiten más de 36 cuotas, ingrese nuevamente",
+        icon: "error"
+      });
       return;
   }
  // Calculo del valor de cada cuota
   const valorCuota = (monto * (1 + recargo)) / cuotas;
-  resultadoContainer.textContent = `El valor de cada cuota es: ${valorCuota.toFixed(2)} $`;
+  // Mostrar el valor de cada cuota en el HTML usando SweetAlert2
+  resultadoContainer.textContent = Swal.fire({
+    title: "El valor de cada cuota es:",
+    text: `$ ${valorCuota.toFixed(2)} `,
+    icon: "success"
+  });
 };
 
 // Event Listener para el botón de calcular prestamo
@@ -75,28 +92,30 @@ const registrarSolicitante = (e) => {
     // Guardar la lista de solicitantes en el local storage
     localStorage.setItem("solicitantes", JSON.stringify(listaSolicitantes));
 
-    // Recorrer la lista de solicitantes y mostrar sus datos por consola
-    // for (let solicitante of listaSolicitantes) { 
-    //   console.log("Nombre: " + solicitante.nombre);
-    //   console.log("Apellido: " + solicitante.apellido);
-    //   console.log("Documento: " + solicitante.documento);
-    // }
-    // console.log(listaSolicitantes); // ver la lista de solicitantes por consola
- 
-    // Mensaje de confirmación del registro de un solicitante
-    resultadoContainer.textContent = `Se ha registrado correctamente.
-                                      Hay un total de ${listaSolicitantes.length} solicitantes`; 
-
-    // Limpiar los inputs lueego de agregar un solicitante
-    document.getElementById("nombre").value = "";
-    document.getElementById("apellido").value = "";
-    document.getElementById("documento").value = "";
-    document.getElementById("edad").value = "";
+    // Mensaje de confirmación del registro de un solicitante usando SweetAlert2
+    resultadoContainer.textContent = Swal.fire({
+                                            position: "center",
+                                            icon: "success",
+                                            title: "Usuario registrado correctamente",
+                                            showConfirmButton: false,
+                                            timer: 2500
+                                          }).then(() => {
+                                            // Limpiar los inputs después de mostrar el mensaje de éxito
+                                            document.getElementById("nombre").value = "";
+                                            document.getElementById("apellido").value = "";
+                                            document.getElementById("documento").value = "";
+                                            document.getElementById("edad").value = "";
+                                          });
 
   } else if (verificacion === "no") {
     return;
   } else {
-    alert("Ingrese un valor válido");
+    // alert("Ingrese un valor válido");
+    Swal.fire({
+      title: "Registro de Solicitante",
+      text: "Debe ingresar un valor válido",
+      icon: "error"
+    });
   }
 } ;
 // Event Listener para el botón de registrar solicitante
@@ -129,7 +148,19 @@ const listarSolicitantes = () => {
     listaSolicitantesDiv.appendChild(ul);
 
     } else {
-      alert("No hay solicitantes registrados");
+      // Mostrar un mensaje tipo alert usando Toastify
+      Toastify({
+        text: "No hay solicitantes registrados",
+        duration: 3000,
+        newWindow: true,
+        close: false,
+        gravity: "top", 
+        position: "right", 
+        stopOnFocus: true, 
+        style: {
+          background: "linear-gradient(to right, #000ff, #87cefa)",
+        },
+      }).showToast();
     }
   } ; 
 

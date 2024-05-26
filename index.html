@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cotizador de Prestamos</title>
+  <!-- Toastify -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="stylesheet" href="styles.css">
+  <title>Cotizador de Prestamos</title>
 </head>
 
 <body>
@@ -24,8 +26,8 @@
     <button id="calcular">Calcular</button> <!-- Agregamos el botón de calcular prestamo -->
     <br>
     <br>
-    <div id="resultado" class="resultado"></div>
     <!-- Agregamos el div donde se mostrará el resultado  del calculo del prestamo y mensajes-->
+    <!-- <div id="resultado" class="resultado"></div> -->
 
     <br>
     <div>
@@ -60,7 +62,7 @@
     <br>
     <br>
     <!-- Agregamos el div donde se mostrará el resultado  del registro de solicitantes y mensajes-->
-    <div id="resultado2" class="resultado"></div>
+    <!-- <div id="resultado2" class="resultado"></div> -->
     <br>
     <br>
     <button id="listar">Listar Solicitantes</button> <!-- Agregamos el botón de listar solicitantes -->
@@ -68,7 +70,10 @@
     <div id="listaSolicitantes" class="resultadoStorage"></div>
   </div>
 
-
+  <!-- Incorporamos la libreria de SweetAlert2 para manejar los avisos -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Incorporamos la libreria de Toastify para manejar los avisos -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="script.js"></script>
 
 </body>
