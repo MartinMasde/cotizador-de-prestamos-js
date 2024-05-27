@@ -164,8 +164,15 @@ const listarSolicitantes = () => {
     }
   } ; 
 
+
+  
+  const redirigirListaSolicitantes = () => {
+    window.location.href = "lista.html";
+  } ;
+
+  document.getElementById("listar").addEventListener("click", redirigirListaSolicitantes);
   // Event Listener para el boton de Listar solicitantes
-  document.getElementById("listar").addEventListener("click", listarSolicitantes);
+  // document.getElementById("listar").addEventListener("click", listarSolicitantes);
 
 
 
