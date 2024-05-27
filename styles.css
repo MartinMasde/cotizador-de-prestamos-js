@@ -6,6 +6,11 @@ body {
     justify-content: center;
     align-items: center;
     height: auto;
+    background-image: url('./img/background_img.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
   }
   
   .container {
