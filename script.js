@@ -149,6 +149,48 @@ document.getElementById("listar").addEventListener("click", () => {
 
 
 
+// Utilizando ASYNC/AWAIT
 
+// Funcion par obtener las cotizacion de las criptomonedas
+async function getCotizacion() {
+  // Url de la API coinGecko para obtener las cotizaciones de las criptomonedas indicadas
+  const url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cripple%2Ctether%2Ccardano&vs_currencies=usd";
+  try {
+    // Realizar la petición a la API de cotizaciones de criptomonedas de las principales monedas
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    // Mostrar un mensaje de error si la petición falla
+    console.error("Error fetching Cripto data: ", error);
+  }
+}
 
+// Funcion para CREAR las cotizaciones en el HTML
+function crearCotizaciones(id, precio) {
+  const dataCripto = document.createElement("p");
+  dataCripto.textContent = `${id}: `;
+  const spanCripto = document.createElement("span");
+  spanCripto.id = `cotizacion${id}`;
+  spanCripto.textContent = `$ ${precio}`;
+  dataCripto.appendChild(spanCripto);
+  return dataCripto;
+}
+
+// Funcion para MOSTRAR las cotizaciones en el HTML
+async function mostrarCotizaciones() {
+  const container = document.getElementById("cotizaciones");
+  const data = await getCotizacion();
+  if (data) {
+    for (const [id, cotizacion] of Object.entries(data)) {
+      const dataCripto = crearCotizaciones(id, cotizacion.usd);
+      container.appendChild(dataCripto);
+    }
+  }
+}
+
+// LLamar a la funcion para mostrar las cotizaciones cuando la pagina se cargue
+document.addEventListener("DOMContentLoaded", (e) => {
+  mostrarCotizaciones();
+});
 

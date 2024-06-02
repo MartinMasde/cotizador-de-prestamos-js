@@ -5,7 +5,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
     background-image: url('./img/background_img.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -14,21 +13,21 @@ body {
   }
   
   .container {
-    height: auto;
+    /* height: auto; */
+    margin-top: 60px;
     width: auto ;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px 0 20px 0;
+    margin: 20px auto;
+    margin-top: 240px;
   }
   
-  h1 {
+  h1, h2 {
     text-align: center;
   }
-  h2 {
-    text-align: center;
-  }
+  
   
   label {
     display: block;
@@ -39,6 +38,7 @@ body {
     width: calc(100% - 12px);
     padding: 5px;
     margin-bottom: 10px;
+    box-sizing: border-box; 
   }
   
   button {
@@ -68,15 +68,10 @@ body {
     margin-bottom: 10px;
   }
   
-  .resultado {
+  .resultado, .resultadoStorage {
     box-shadow: 0 0 10px rgba(0, 0, 0, 1.1);
     border: 10px;
     text-align: center;
-  }
-
-  .resultadoStorage {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1.1);
-    border: 10px;
   }
 
   table {
@@ -97,3 +92,18 @@ th {
 tr:hover {
     background-color: #f5f5f5; /* Color de fondo al pasar el mouse por encima de una fila */
 }
+/* Estilos para la barra de cotizaciones */
+.cotizaciones-barra {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
